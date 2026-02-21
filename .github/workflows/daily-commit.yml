@@ -2,7 +2,7 @@ name: Daily Auto Commit
 
 on:
   schedule:
-    - cron: '15 18 * * *'   # Specific time (18:15 UTC daily)
+    - cron: '20 18 * * *'   # Specific time (UTC)
   workflow_dispatch:
 
 permissions:
@@ -15,8 +15,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          persist-credentials: true
 
       - name: Setup Git
         run: |
@@ -24,12 +22,14 @@ jobs:
           git config user.email "23f3004349@ds.study.iitm.ac.in"
 
       - name: Step by 23f3004349@ds.study.iitm.ac.in
-        run: echo "Running scheduled commit"
+        run: echo "Scheduled commit workflow running"
+
+      - name: Ensure timestamp gap
+        run: sleep 20
 
       - name: Create guaranteed commit
         run: |
-          BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          echo "Run at $(date +%s)" > commit_$(date +%s).txt
+          echo "Run at $(date)" > run_$(date +%s).txt
           git add .
           git commit -m "Automated daily commit $(date)"
-          git push origin $BRANCH_NAME
+          git push
