@@ -2,7 +2,6 @@ name: Daily Auto Commit
 
 on:
   schedule:
-    # Runs daily at 18:30 UTC (adjust if needed)
     - cron: '30 18 * * *'
   workflow_dispatch:
 
@@ -23,11 +22,11 @@ jobs:
           git config user.email "23f3004349@ds.study.iitm.ac.in"
 
       - name: Step by 23f3004349@ds.study.iitm.ac.in
-        run: echo "Running daily commit workflow"
+        run: echo "Ensuring commit creation"
 
-      - name: Create daily commit
+      - name: Force create daily commit
         run: |
-          echo "Last run: $(date)" >> daily-log.txt
-          git add daily-log.txt
-          git commit -m "Automated daily commit - $(date)" || echo "No changes to commit"
+          echo "Run at $(date +%s)" > auto_commit_$(date +%s).txt
+          git add .
+          git commit -m "Daily automated commit $(date)"
           git push
