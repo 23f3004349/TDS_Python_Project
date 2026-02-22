@@ -1,0 +1,28 @@
+name: DataDash Scraper
+
+on:
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: |
+          npm init -y
+          npm install playwright
+
+      - name: Install browsers
+        run: npx playwright install
+
+      - name: Run scraper - 23f3004349@ds.study.iitm.ac.in
+        run: node scrape.js  
