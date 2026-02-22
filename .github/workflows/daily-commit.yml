@@ -25,8 +25,8 @@ jobs:
 
       - name: Create guaranteed commit
         run: |
-          FILE="daily_$(date +%s).txt"
-          echo "Run at $(date)" >> $FILE
+          FILE="daily_$RANDOM_$(date +%s).txt"
+          echo "Run at $(date)" > $FILE
           git add $FILE
-          git commit -m "Automated daily commit $(date)"
+          git commit -m "Automated daily commit $(date)" || echo "Commit skipped"
           git push
