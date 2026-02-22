@@ -1,8 +1,8 @@
-name: Daily Auto Commit
+name: Daily Auto Commit - 23f3004349@ds.study.iitm.ac.in
 
 on:
   schedule:
-    - cron: '20 18 * * *'   # Specific time (UTC)
+    - cron: '20 18 * * *'
   workflow_dispatch:
 
 permissions:
