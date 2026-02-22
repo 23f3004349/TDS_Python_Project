@@ -29,7 +29,8 @@ jobs:
 
       - name: Create guaranteed commit
         run: |
-          echo "Run at $(date)" > run_$(date +%s).txt
-          git add .
-          git commit -m "Automated daily commit $(date)"
-          git push
+              FILE="daily_$(date +%s).txt"
+              echo "Run at $(date)" >> $FILE
+              git add $FILE
+              git commit -m "Automated daily commit $(date)"
+              git push
