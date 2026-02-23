@@ -29,4 +29,5 @@ jobs:
           echo "Run at $(date)" > $FILE
           git add $FILE
           git commit -m "Automated daily commit $(date)" || echo "Commit skipped"
-          git push
+          git pull origin main --rebase
+          git push origin main
